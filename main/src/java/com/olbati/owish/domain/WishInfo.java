@@ -1,13 +1,8 @@
 package com.olbati.owish.domain;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 /**
  * @author Ahmed Jerid  <ahmed.jerid@arismore.fr> on 18/01/2017.
