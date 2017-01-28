@@ -18,7 +18,7 @@ import java.util.Set;
  * @author Ahmed Jerid  <ahmed.jerid@arismore.fr> on 27/01/2017.
  */
 @Service
-public class WishServiceImpl implements WishService , ApplicationEventPublisherAware {
+public class WishServiceImpl implements WishService, ApplicationEventPublisherAware {
 
     @Autowired
     WishSearchRepository wishSearchRepository;
@@ -30,7 +30,7 @@ public class WishServiceImpl implements WishService , ApplicationEventPublisherA
 
     @Override
     public Wish addWish(Wish wish) {
-       // publisher.publishEvent(new WishEvent(this, wish));
+        publisher.publishEvent(new WishEvent(this, wish));
         return wishRepository.save(wish);
 
     }
@@ -44,13 +44,15 @@ public class WishServiceImpl implements WishService , ApplicationEventPublisherA
     @Override
     public Set<WishInfo> finAllWishes() {
         Set<WishInfo> result = new HashSet<>();
-        Iterable<WishInfo> wihes = wishSearchRepository.findAll();
-        wihes.forEach(result::add);
+        Iterable<WishInfo> wishes = wishSearchRepository.findAll();
+        if (wishes == null)
+            return null;
+        wishes.forEach(result::add);
         return result;
     }
 
     @Override
-    public void setApplicationEventPublisher(ApplicationEventPublisher applicationEventPublisher) {
-
+    public void setApplicationEventPublisher(ApplicationEventPublisher publisher) {
+        this.publisher = publisher;
     }
 }

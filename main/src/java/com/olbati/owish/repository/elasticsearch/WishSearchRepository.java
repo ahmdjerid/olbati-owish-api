@@ -10,7 +10,7 @@ import org.springframework.data.elasticsearch.repository.ElasticsearchRepository
  */
 
 
-public interface WishSearchRepository extends ElasticsearchRepository<WishInfo, Long> {
+public interface WishSearchRepository extends ElasticsearchRepository<WishInfo, String> {
 
 
 }

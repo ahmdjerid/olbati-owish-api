@@ -3,6 +3,7 @@ package com.olbati.owish.controller;
 import com.olbati.owish.Service.WishService;
 import com.olbati.owish.domain.Wish;
 import com.olbati.owish.domain.WishInfo;
+import com.olbati.owish.repository.elasticsearch.WishSearchRepository;
 import com.olbati.owish.util.WishResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -22,25 +23,24 @@ import java.util.Set;
 @RequestMapping("/api")
 
 public class WishController {
+
     @Autowired
     WishService wishService;
 
+    @Autowired
+    WishSearchRepository wishSearchRepository;
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
+
     public HttpEntity<Wish> Save(@RequestBody Wish wish) {
-        System.out.println("wish ref is " +wish);
-        System.out.println("wish name is " +wish.getWishName());
-        return new ResponseEntity<>(wishService.addWish(wish), HttpStatus.OK);
+        Wish createdWish = wishService.addWish(wish);
+        return new ResponseEntity<>(createdWish, HttpStatus.OK);
+
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public HttpEntity<?> getAll() {
-        WishInfo wishInfo = new WishInfo("wish 1");
-        wishService.addWishInfo(wishInfo);
-
         Set<WishInfo> wishes = wishService.finAllWishes();
-        System.out.println(wishes.iterator().next().getWishName());
-
         return new ResponseEntity<>(new WishResponse(wishes), HttpStatus.OK);
 
     }
