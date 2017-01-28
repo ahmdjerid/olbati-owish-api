@@ -5,6 +5,7 @@ import com.olbati.owish.domain.WishInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.event.TransactionalEventListener;
 
 /**
  * @author Ahmed Jerid  <ahmed.jerid@arismore.fr> on 27/01/2017.
@@ -16,6 +17,7 @@ public class WishEventProcessor implements ApplicationListener<WishEvent> {
     WishService wishService;
 
     @Override
+    @TransactionalEventListener
     public void onApplicationEvent(WishEvent wishEvent) {
         WishInfo wishInfo = new WishInfo(wishEvent.getWish().getWishName());
         System.out.println(wishService.addWishInfo(wishInfo));
