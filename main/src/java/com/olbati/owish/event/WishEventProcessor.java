@@ -5,6 +5,7 @@ import com.olbati.owish.domain.WishInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.event.TransactionPhase;
 import org.springframework.transaction.event.TransactionalEventListener;
 
 /**
@@ -17,9 +18,10 @@ public class WishEventProcessor implements ApplicationListener<WishEvent> {
     WishService wishService;
 
     @Override
-    @TransactionalEventListener
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
     public void onApplicationEvent(WishEvent wishEvent) {
+        System.out.println("wish to add");
         WishInfo wishInfo = new WishInfo(wishEvent.getWish().getWishName());
-        System.out.println(wishService.addWishInfo(wishInfo));
+        wishService.addWishInfo(wishInfo);
     }
 }

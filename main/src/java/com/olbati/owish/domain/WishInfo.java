@@ -9,6 +9,7 @@ import javax.persistence.Id;
 
 /**
  * @author Ahmed Jerid  <ahmed.jerid@arismore.fr> on 18/01/2017.
+ * TODO Remove redundancy
  */
 @Document(indexName = "olbati", type = "wish-info", replicas = 0)
 public class WishInfo {

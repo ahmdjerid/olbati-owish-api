@@ -15,7 +15,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  */
 @Configuration
 @ComponentScan(basePackageClasses = {WishRepository.class, WishSearchRepository.class})
-@Import({CORSFilter.class})
+@Import({CORSFilter.class,ElasticSearchConfiguration.class})
 @EnableJpaRepositories(basePackageClasses = {WishRepository.class})
 @EnableElasticsearchRepositories(basePackageClasses = WishSearchRepository.class)
 @PropertySource({

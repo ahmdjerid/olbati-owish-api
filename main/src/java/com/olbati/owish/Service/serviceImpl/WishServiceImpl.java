@@ -43,12 +43,12 @@ public class WishServiceImpl implements WishService, ApplicationEventPublisherAw
 
     @Override
     public Set<WishInfo> finAllWishes() {
-        Set<WishInfo> result = new HashSet<>();
+        Set<WishInfo> response = new HashSet<>();
         Iterable<WishInfo> wishes = wishSearchRepository.findAll();
         if (wishes == null)
             return null;
-        wishes.forEach(result::add);
-        return result;
+        wishes.forEach(response::add);
+        return response;
     }
 
     @Override
