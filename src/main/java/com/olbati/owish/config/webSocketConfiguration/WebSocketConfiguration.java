@@ -1,4 +1,4 @@
-package com.olbati.owish.config;
+package com.olbati.owish.config.webSocketConfiguration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,7 +12,7 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
  */
 @Component
 @EnableWebSocket
-public class WebSocketConfig implements WebSocketConfigurer {
+public class WebSocketConfiguration implements WebSocketConfigurer {
 
     @Autowired
     WebSocketHandler webSocketHandler;

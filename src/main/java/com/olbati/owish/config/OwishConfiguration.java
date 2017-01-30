@@ -1,6 +1,9 @@
 package com.olbati.owish.config;
 
 
+import com.olbati.owish.config.corsConfiguration.CorsFilter;
+import com.olbati.owish.config.elasticSearchConfiguration.ElasticSearchConfiguration;
+import com.olbati.owish.config.webSocketConfiguration.WebSocketConfiguration;
 import com.olbati.owish.repository.elasticsearch.WishSearchRepository;
 import com.olbati.owish.repository.jpa.WishRepository;
 import org.springframework.context.annotation.ComponentScan;
@@ -15,7 +18,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  */
 @Configuration
 @ComponentScan(basePackageClasses = {WishRepository.class, WishSearchRepository.class})
-@Import({CORSFilter.class, ElasticSearchConfiguration.class,WebSocketConfig.class})
+@Import({CorsFilter.class, ElasticSearchConfiguration.class, WebSocketConfiguration.class})
 @EnableJpaRepositories(basePackageClasses = {WishRepository.class})
 @EnableElasticsearchRepositories(basePackageClasses = WishSearchRepository.class)
 @PropertySource({

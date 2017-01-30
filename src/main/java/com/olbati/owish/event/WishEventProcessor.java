@@ -1,7 +1,6 @@
 package com.olbati.owish.event;
 
 import com.olbati.owish.Service.WishService;
-import com.olbati.owish.config.WebSocketHandler;
 import com.olbati.owish.domain.WishInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;

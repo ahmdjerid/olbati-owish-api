@@ -1,6 +1,6 @@
 
 
-package com.olbati.owish.config;
+package com.olbati.owish.config.elasticSearchConfiguration;
 
 import com.olbati.owish.domain.WishInfo;
 import org.elasticsearch.client.Client;

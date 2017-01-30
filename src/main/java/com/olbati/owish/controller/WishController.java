@@ -1,7 +1,6 @@
 package com.olbati.owish.controller;
 
 import com.olbati.owish.Service.WishService;
-import com.olbati.owish.config.WebSocketHandler;
 import com.olbati.owish.domain.Wish;
 import com.olbati.owish.domain.WishInfo;
 import com.olbati.owish.util.WishResponse;

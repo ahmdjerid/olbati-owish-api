@@ -1,4 +1,4 @@
-package com.olbati.owish.config;
+package com.olbati.owish.event;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
@@ -33,7 +33,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         sessions.add(session);
-        System.out.println(" session  connected is " + session.getId());
+
 
     }
 
