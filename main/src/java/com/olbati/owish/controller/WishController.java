@@ -3,7 +3,6 @@ package com.olbati.owish.controller;
 import com.olbati.owish.Service.WishService;
 import com.olbati.owish.domain.Wish;
 import com.olbati.owish.domain.WishInfo;
-import com.olbati.owish.repository.elasticsearch.WishSearchRepository;
 import com.olbati.owish.util.WishResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -27,9 +26,7 @@ public class WishController {
     @Autowired
     WishService wishService;
 
-    @Autowired
-    WishSearchRepository wishSearchRepository;
-
+    
     @RequestMapping(value = "/add", method = RequestMethod.POST)
 
     public HttpEntity<Wish> Save(@RequestBody Wish wish) {
