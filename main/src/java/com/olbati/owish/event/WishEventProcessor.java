@@ -1,15 +1,15 @@
 package com.olbati.owish.event;
 
 import com.olbati.owish.Service.WishService;
+import com.olbati.owish.config.WebSocketHandler;
 import com.olbati.owish.domain.WishInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.event.TransactionPhase;
 import org.springframework.transaction.event.TransactionalEventListener;
-import org.springframework.web.socket.WebSocketHandler;
+import org.springframework.web.socket.TextMessage;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -22,15 +22,18 @@ public class WishEventProcessor implements ApplicationListener<WishEvent> {
     WishService wishService;
 
     @Autowired
-    WebSocketHandler webSocketHandler;
+    WebSocketHandler handler;
 
     @Override
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
     public void onApplicationEvent(WishEvent wishEvent) {
         WishInfo wishInfo = new WishInfo(wishEvent.getWish().getWishName(), new Date());
         wishService.addWishInfo(wishInfo);
-
-
+        try {
+            handler.handleTextMessage(null, new TextMessage("update_List"));
+        } catch (Exception e) {
+            // nothing to do
+        }
     }
 
 }

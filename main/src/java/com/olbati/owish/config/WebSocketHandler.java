@@ -6,6 +6,7 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+        sessions.remove(session);
     }
 
     @Override
@@ -36,7 +38,14 @@ public class WebSocketHandler extends TextWebSocketHandler {
     }
 
     @Override
-    protected void handleTextMessage(WebSocketSession session, TextMessage jsonTextMessage) throws Exception {
-        System.out.println(jsonTextMessage);
+    public void handleTextMessage(WebSocketSession session, TextMessage jsonTextMessage) throws Exception {
+        sessions.forEach((s) -> {
+            try {
+                s.sendMessage(new TextMessage("update_List"));
+                System.out.println("message was send to " + s.getId());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 }
