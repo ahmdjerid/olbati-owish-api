@@ -42,7 +42,6 @@ public class WebSocketHandler extends TextWebSocketHandler {
         sessions.forEach((s) -> {
             try {
                 s.sendMessage(new TextMessage("update_List"));
-                System.out.println("message was send to " + s.getId());
             } catch (IOException e) {
                 e.printStackTrace();
             }

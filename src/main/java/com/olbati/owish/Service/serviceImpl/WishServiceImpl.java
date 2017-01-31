@@ -1,5 +1,6 @@
 package com.olbati.owish.Service.serviceImpl;
 
+import com.google.common.collect.Lists;
 import com.olbati.owish.Service.WishService;
 import com.olbati.owish.domain.Wish;
 import com.olbati.owish.domain.WishInfo;
@@ -9,10 +10,10 @@ import com.olbati.owish.repository.jpa.WishRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 /**
  * @author Ahmed Jerid  <ahmed.jerid@arismore.fr> on 27/01/2017.
@@ -34,7 +35,6 @@ public class WishServiceImpl implements WishService, ApplicationEventPublisherAw
         return wishRepository.save(wish);
 
 
-
     }
 
 
@@ -44,13 +44,9 @@ public class WishServiceImpl implements WishService, ApplicationEventPublisherAw
     }
 
     @Override
-    public Set<WishInfo> finAllWishes() {
-        Set<WishInfo> response = new HashSet<>();
-        Iterable<WishInfo> wishes = wishSearchRepository.findAll();
-        if (wishes == null)
-            return null;
-        wishes.forEach(response::add);
-        return response;
+    public List<WishInfo> finAllWishes() {
+        Iterable<WishInfo> wishes = wishSearchRepository.findAll(new Sort(Sort.Direction.ASC, "createdTimeStamp"));
+        return Lists.newArrayList(wishes);
     }
 
     @Override

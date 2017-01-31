@@ -24,8 +24,8 @@ public class WishInfo {
     @Field(type = FieldType.String)
     private String wishName;
 
-    @JsonFormat (shape = JsonFormat.Shape.STRING, pattern ="yyyy-MM-dd'T'HH:mm:ss")
-    @Field(type = FieldType.Date,pattern ="yyyy-MM-dd'T'HH:mm:ss" )
+    @JsonFormat (shape = JsonFormat.Shape.STRING, pattern ="yyyy-MM-dd'T'HH:mm")
+    @Field(type = FieldType.Date,pattern ="yyyy-MM-dd'T'HH:mm" )
     private Date createdTimeStamp;
 
     public String getWishName() {
