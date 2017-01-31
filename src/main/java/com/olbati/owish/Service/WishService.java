@@ -3,6 +3,8 @@ package com.olbati.owish.Service;
 import com.olbati.owish.domain.Wish;
 import com.olbati.owish.domain.WishInfo;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -14,6 +16,6 @@ public interface WishService {
 
     WishInfo addWishInfo(WishInfo wish);
 
-    Set<WishInfo> finAllWishes();
+    List<WishInfo> finAllWishes();
 
 }

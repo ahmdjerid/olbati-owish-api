@@ -11,9 +11,9 @@ import java.util.Set;
 public class WishResponse {
 
     @JsonProperty
-    private Set<WishInfo> wishes;
+    private Iterable<WishInfo> wishes;
 
-    public WishResponse(Set<WishInfo> wishes) {
+    public WishResponse(Iterable<WishInfo> wishes) {
         this.wishes = wishes;
     }
 }
